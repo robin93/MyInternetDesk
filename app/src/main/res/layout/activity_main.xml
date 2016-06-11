@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    tools:context="com.example.robin.myinternetdesk.MainActivity">
+
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/webView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/numberPicker"
+        android:layout_alignEnd="@+id/numberPicker"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/holo_orange_light"
+        android:scrollbars="vertical"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go To Page"
+        android:id="@+id/ClickToOpenPage"
+        android:onClick="navigate"
+        android:background="@android:color/holo_blue_light"
+        android:layout_above="@+id/webView"
+        android:layout_alignRight="@+id/webView"
+        android:layout_alignEnd="@+id/webView" />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextName"
+        android:hint="Small Name"
+        android:layout_above="@+id/editTextURL"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextURL"
+        android:hint="e.g. www.google.com"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/ClickToOpenPage"
+        android:layout_toLeftOf="@+id/numberPicker"
+        android:layout_toStartOf="@+id/numberPicker" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Page"
+        android:id="@+id/buttonAddPage"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="addPage"
+        android:background="@android:color/holo_green_light"/>
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPicker2"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/editTextURL"
+        android:layout_above="@+id/ClickToOpenPage"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/darker_gray"/>
+
+</RelativeLayout>
