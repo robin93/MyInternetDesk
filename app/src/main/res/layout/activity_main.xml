@@ -7,14 +7,32 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:descendantFocusability="beforeDescendants"
-    android:focusableInTouchMode="true"
     tools:context="com.example.robin.myinternetdesk.MainActivity">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextName"
+        android:hint="Small Name"
+        android:textSize="10sp"
+        android:layout_below="@+id/buttonAddPage"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextURL"
+        android:hint="e.g. www.google.com"
+        android:textSize="10sp"
+        android:layout_below="@+id/editTextName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
     <WebView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:id="@+id/webView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -22,7 +40,8 @@
         android:layout_alignEnd="@+id/numberPicker"
         android:layout_alignParentBottom="true"
         android:background="@android:color/holo_orange_light"
-        android:scrollbars="vertical"/>
+        android:scrollbars="vertical"
+        android:layout_below="@+id/ClickToOpenPage" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -32,30 +51,9 @@
         android:id="@+id/ClickToOpenPage"
         android:onClick="navigate"
         android:background="@android:color/holo_blue_light"
-        android:layout_above="@+id/webView"
-        android:layout_alignRight="@+id/webView"
-        android:layout_alignEnd="@+id/webView" />
-
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextName"
-        android:hint="Small Name"
-        android:layout_above="@+id/editTextURL"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextURL"
-        android:hint="e.g. www.google.com"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/ClickToOpenPage"
-        android:layout_toLeftOf="@+id/numberPicker"
-        android:layout_toStartOf="@+id/numberPicker" />
+        android:layout_alignTop="@+id/button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -72,11 +70,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/numberPicker2"
+        android:textSize="12sp"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/editTextURL"
-        android:layout_above="@+id/ClickToOpenPage"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:background="@android:color/darker_gray"/>
+        android:background="@android:color/darker_gray"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignStart="@+id/button"
+        android:layout_alignBottom="@+id/editTextURL" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Del Page"
+        android:id="@+id/button"
+        android:layout_toLeftOf="@+id/ClickToOpenPage"
+        android:layout_below="@+id/numberPicker2"
+        android:background="@android:color/holo_orange_dark"/>
 
 </RelativeLayout>
