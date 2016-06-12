@@ -20,6 +20,10 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +50,10 @@ public class MainActivity extends AppCompatActivity {
         webView = (WebView) findViewById(R.id.webView);
 
 
-        possibilitiesString_list.add("CN by AM");
+        //possibilitiesString_list.add("CN by AM");
+        //String[] possibilitiesString_Array = new String[possibilitiesString_list.size()];
+
+        possibilitiesString_list = (List<String>) ReadArrayListFromSD(getApplicationContext(),"shortnames_list");
         String[] possibilitiesString_Array = new String[possibilitiesString_list.size()];
 
 
@@ -159,4 +166,37 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        String possibilitiesString_list_saved = "shortnames_list";
+        SaveArrayListToSD(getApplicationContext(),possibilitiesString_list_saved,possibilitiesString_list);
+
+    }
+
+    public static <E> void SaveArrayListToSD(Context mContext, String filename, List<String> list){
+        try {
+            FileOutputStream fos = mContext.openFileOutput(filename + ".dat", mContext.MODE_PRIVATE);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(list);
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Object ReadArrayListFromSD(Context mContext,String filename){
+        try {
+            FileInputStream fis = mContext.openFileInput(filename + ".dat");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Object obj= (Object) ois.readObject();
+            fis.close();
+            return obj;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<Object>();
+        }
+    }
 }
