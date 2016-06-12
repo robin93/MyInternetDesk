@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -63,12 +64,42 @@ public class MainActivity extends AppCompatActivity {
         inputName = (EditText) findViewById(R.id.editTextName);
         inputName.setCursorVisible(false);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        inputName.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                inputName.setSelection(inputName.getText().toString().length());
+                inputName.requestFocus();
+                inputName.requestFocusFromTouch();
+                inputName.setCursorVisible(true);
+                return false;
+            }
+        });
         inputURL = (EditText) findViewById(R.id.editTextURL);
         inputURL.setCursorVisible(false);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        inputURL.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                inputURL.setSelection(inputURL.getText().toString().length());
+                inputURL.requestFocus();
+                inputURL.requestFocusFromTouch();
+                inputURL.setCursorVisible(true);
+                return false;
+            }
+        });
         inputNameDel = (EditText) findViewById(R.id.editTextDelPage);
         inputNameDel.setCursorVisible(false);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        inputNameDel.setOnTouchListener(new View.OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+                inputNameDel.setSelection(inputNameDel.getText().toString().length());
+                inputNameDel.requestFocus();
+                inputNameDel.requestFocusFromTouch();
+                inputNameDel.setCursorVisible(true);
+                return false;
+            }
+        });
 
     }
 
@@ -77,6 +108,9 @@ public class MainActivity extends AppCompatActivity {
         String name = inputName.getText().toString();
         String url_without_http = inputURL.getText().toString();
         String url_with_http = "http://"+url_without_http;
+
+        inputName.getText().clear();
+        inputURL.getText().clear();
 
         possibilitiesString_list.add(name);
         possibilitiesString_Array = new String[possibilitiesString_list.size()];
@@ -105,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
         String nameToDel = inputNameDel.getText().toString();
 
+
         if (possibilitiesString_list.size()>2) {
             int index = possibilitiesString_list.indexOf(nameToDel);
             possibilitiesString_list.remove(index);
@@ -120,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
             possibilities.setMaxValue(possibilitiesString_Array2.length - 1);
         }
 
+        inputNameDel.getText().clear();
 
     }
 
