@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editTextName"
-        android:hint="Small Name"
+        android:hint="Short Name for Website"
         android:textSize="10sp"
         android:layout_below="@+id/buttonAddPage"
         android:layout_alignParentLeft="true"
@@ -23,11 +23,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editTextURL"
-        android:hint="e.g. www.google.com"
+        android:hint="URL e.g. www.google.com"
         android:textSize="10sp"
         android:layout_below="@+id/editTextName"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/buttonAddPage"
+        android:layout_alignEnd="@+id/buttonAddPage" />
 
 
     <WebView
@@ -58,13 +60,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Page"
+        android:text="Add Page to List"
         android:id="@+id/buttonAddPage"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:onClick="addPage"
-        android:background="@android:color/holo_green_light"/>
+        android:background="@android:color/holo_green_light" />
 
     <NumberPicker
         android:layout_width="wrap_content"
@@ -75,17 +77,31 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:background="@android:color/darker_gray"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button"
-        android:layout_alignBottom="@+id/editTextURL" />
+        android:layout_alignBottom="@+id/editTextURL"
+        android:layout_toRightOf="@+id/editTextDelPage"
+        android:layout_toEndOf="@+id/editTextDelPage" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Del Page"
+        android:onClick="delPage"
         android:id="@+id/button"
-        android:layout_toLeftOf="@+id/ClickToOpenPage"
         android:layout_below="@+id/numberPicker2"
-        android:background="@android:color/holo_orange_dark"/>
+        android:background="@android:color/holo_orange_dark"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/editTextURL"
+        android:layout_alignEnd="@+id/editTextURL" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextDelPage"
+        android:hint="Name to Delete"
+        android:textSize="10sp"
+        android:layout_alignBottom="@+id/button"
+        android:layout_toRightOf="@+id/button"
+        android:layout_toEndOf="@+id/button" />
 
 </RelativeLayout>

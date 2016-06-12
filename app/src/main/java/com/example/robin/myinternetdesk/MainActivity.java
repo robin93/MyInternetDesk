@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private String[] possibilitiesString_Array;
     List<String> possibilitiesString_list = new ArrayList<String>();
     List<String> urlString_List = new ArrayList<String>();
-    EditText inputURL,inputName;
+    EditText inputURL,inputName,inputNameDel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,14 @@ public class MainActivity extends AppCompatActivity {
         possibilities.setMaxValue(possibilitiesString_Array.length-1);
 
         inputName = (EditText) findViewById(R.id.editTextName);
+        inputName.setCursorVisible(false);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         inputURL = (EditText) findViewById(R.id.editTextURL);
+        inputURL.setCursorVisible(false);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        inputNameDel = (EditText) findViewById(R.id.editTextDelPage);
+        inputNameDel.setCursorVisible(false);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
     }
 
@@ -69,13 +77,13 @@ public class MainActivity extends AppCompatActivity {
         String name = inputName.getText().toString();
         String url_without_http = inputURL.getText().toString();
         String url_with_http = "http://"+url_without_http;
-        Toast.makeText(getApplicationContext(),name, Toast.LENGTH_SHORT).show();
 
         possibilitiesString_list.add(name);
-        urlString_List.add(url_with_http);
         possibilitiesString_Array = new String[possibilitiesString_list.size()];
-        urlString_Array = new String[urlString_List.size()];
         possibilitiesString_list.toArray(possibilitiesString_Array);
+
+        urlString_List.add(url_with_http);
+        urlString_Array = new String[urlString_List.size()];
         urlString_List.toArray(urlString_Array);
 
         possibilities.setDisplayedValues(possibilitiesString_Array);
@@ -92,6 +100,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void delPage(View v){
+        possibilities.setValue(0);
 
+        String nameToDel = inputNameDel.getText().toString();
+
+        if (possibilitiesString_list.size()>2) {
+            int index = possibilitiesString_list.indexOf(nameToDel);
+            possibilitiesString_list.remove(index);
+            String[] possibilitiesString_Array2 = new String[possibilitiesString_list.size()];
+            possibilitiesString_list.toArray(possibilitiesString_Array2);
+
+            urlString_List.remove(index);
+            urlString_Array = new String[urlString_List.size()];
+            urlString_List.toArray(urlString_Array);
+
+            possibilities.setDisplayedValues(possibilitiesString_Array2);
+            possibilities.setMinValue(0);
+            possibilities.setMaxValue(possibilitiesString_Array2.length - 1);
+        }
+
+
+    }
 
 }
