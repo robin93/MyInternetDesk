@@ -49,15 +49,19 @@ public class MainActivity extends AppCompatActivity {
         possibilities = (NumberPicker) findViewById(R.id.numberPicker2);
         webView = (WebView) findViewById(R.id.webView);
 
-
-        //possibilitiesString_list.add("CN by AM");
-        //String[] possibilitiesString_Array = new String[possibilitiesString_list.size()];
-
         possibilitiesString_list = (List<String>) ReadArrayListFromSD(getApplicationContext(),"shortnames_list");
-        String[] possibilitiesString_Array = new String[possibilitiesString_list.size()];
 
+        if (possibilitiesString_list.isEmpty()){
+            possibilitiesString_list.add("CN by AM");
+        }
 
-        urlString_List.add("http://cse.iitkgp.ac.in/~animeshm/course_cnt2016.html");
+        possibilitiesString_Array = new String[possibilitiesString_list.size()];
+
+        urlString_List = (List<String>) ReadArrayListFromSD(getApplicationContext(),"url_with_http_list");
+        if (urlString_List.isEmpty()){
+            urlString_List.add("http://cse.iitkgp.ac.in/~animeshm/course_cnt2016.html");
+        }
+
         urlString_Array = new String[urlString_List.size()];
 
 
@@ -171,10 +175,13 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
 
         String possibilitiesString_list_saved = "shortnames_list";
+        String urlString_list_saved = "url_with_http_list";
         SaveArrayListToSD(getApplicationContext(),possibilitiesString_list_saved,possibilitiesString_list);
+        SaveArrayListToSD(getApplicationContext(),urlString_list_saved,urlString_List);
+
 
     }
-
+    //http://stackoverflow.com/questions/18827862/how-to-keep-data-stored-in-array-after-application-has-ended
     public static <E> void SaveArrayListToSD(Context mContext, String filename, List<String> list){
         try {
             FileOutputStream fos = mContext.openFileOutput(filename + ".dat", mContext.MODE_PRIVATE);
